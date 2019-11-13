@@ -1,2 +1,6 @@
 # csv files
 *.csv
+
+# python files
+.idea
+__pycache__

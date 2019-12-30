@@ -7,11 +7,13 @@ from emodul.values.temperature_sensor import TemperatureSensor
 from emodul.values.relay_value import RelayValue
 from emodul.values.universal_value import UniversalValue
 
-id_module = 10865
-date = '2019-10-17'
+ROGGER = 10865
+id_module = 5599
+date = '2019-12-16'
 time_start = "00:00:00"
 time_end = "23:59:59"
-parameters = ('TC_EVI_STATE', 'TC_DHW_TEMP', 'TC_COMPRESSED_GAS_TEMP')
+parameters = ('TC_COMPRESSOR_STATE',
+              'TC_OUTSIDE_TEMP')
 
 
 def get_time_from_string_full_date(date):
@@ -47,9 +49,9 @@ module_data = module_data[(module_data['time'] > time_start) & (module_data['tim
 module_data['type'] = module_data['value'].apply(lambda value: BaseValue(value).get_type())
 
 fig, ax = plt.subplots(len(parameters), figsize=(20, 25))
-fig.suptitle('{}'.format(date))
+fig.suptitle('{} ID MODULE: {}'.format(date, id_module))
 for i, parameter in enumerate(parameters):
-    id_parameter = HeatPump.sensor[parameter]
+    id_parameter = HeatPump.values[parameter]
     parameter_data = module_data.loc[module_data['id_status'] == id_parameter]
     parameter_data[parameter] = parameter_data.apply(lambda row: get_value(row), axis=1)
     ax[i].plot(parameter_data['time'], parameter_data[parameter], label=parameter)

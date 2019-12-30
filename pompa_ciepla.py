@@ -1,5 +1,5 @@
 class HeatPump:
-    sensor = {'TC_VERSION': 509,
+    values = {'TC_VERSION': 509,
               'TC_DATE': 1002,
               'TC_FAN_STATE': 1006,
               'TC_COMPRESSOR_STATE': 1007,

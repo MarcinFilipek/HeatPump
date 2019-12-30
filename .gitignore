@@ -4,3 +4,6 @@
 # python files
 .idea
 __pycache__
+
+# ini files
+*.ini

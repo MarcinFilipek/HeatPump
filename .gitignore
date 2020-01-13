@@ -7,3 +7,6 @@ __pycache__
 
 # ini files
 *.ini
+
+#jupyter files
+.ipynb_checkpoints

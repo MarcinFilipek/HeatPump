@@ -14,11 +14,11 @@ def download():
         conn = psg.connect(**params)
         cur = conn.cursor()
         print('Download data...')
-        date_list = generate_date("07-01-2020", pd.datetime.now())
+        date_list = generate_date("07-12-2019", pd.datetime.now())
 
         for date in date_list:
-            table = Table('public.pompy_ciepla')
-            time = "time::date = '{}'".format(date.date())
+            table = Table('public.alarmy')
+            time = "message_time::date = '{}'".format(date.date())
             q = Query.from_(table).select('*')
             cur.execute(q.get_sql(quote_char=None) + " WHERE " + time)
 
@@ -26,11 +26,13 @@ def download():
             rows_list = []
             for i in range(number_of_row):
                 row = cur.fetchone()
-                if row[3] is not None:
-                    for element in row[3]:
-                        key, value = element.popitem()
-                        insert = {'id_module': row[1], 'id_status': key, 'value': value, 'time': row[2]}
-                        rows_list.append(insert)
+                columns = ['id_module',
+                           'row_data',
+                           'message_time',
+                           'message_head',
+                           'message_body']
+                insert = dict(zip(columns, row[1:]))
+                rows_list.append(insert)
             if number_of_row > 0:
                 save_to_csv(rows_list, date.date())
 
@@ -46,10 +48,11 @@ def download():
 
 def save_to_csv(list, date):
     df_statuses = pd.DataFrame(list, columns=['id_module',
-                                              'id_status',
-                                              'value',
-                                              'time'])
-    df_statuses.to_csv('data/{}.csv'.format(date), index=False)
+                                              'row_data',
+                                              'message_time',
+                                              'message_head',
+                                              'message_body'])
+    df_statuses.to_csv('data/{}_alarms.csv'.format(date), index=False)
 
 
 def generate_date(start, end):

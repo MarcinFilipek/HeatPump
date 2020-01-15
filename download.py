@@ -20,6 +20,7 @@ def download():
             table = Table('public.pompy_ciepla')
             time = "time::date = '{}'".format(date.date())
             q = Query.from_(table).select('*')
+            print(q.get_sql(quote_char=None) + " WHERE " + time)
             cur.execute(q.get_sql(quote_char=None) + " WHERE " + time)
 
             number_of_row = cur.rowcount

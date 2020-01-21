@@ -14,7 +14,7 @@ def download():
         conn = psg.connect(**params)
         cur = conn.cursor()
         print('Download data...')
-        date_list = generate_date("2020-01-14", pd.datetime.now())
+        date_list = generate_date("2020-01-20", pd.datetime.now())
 
         for date in date_list:
             table = Table('public.pompy_ciepla')

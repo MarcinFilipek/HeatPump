@@ -8,14 +8,15 @@ from emodul.values.relay_value import RelayValue
 from emodul.values.universal_value import UniversalValue
 
 ROGGER = 10865
-id_module = 23082
-date = '2019-12-09'
-time_start = "11:00:00"
-time_end = "13:59:59"
+id_module = 21834
+date = '2020-02-12'
+time_start = "00:00:00"
+time_end = "23:59:59"
 parameters = ('TC_COMPRESSOR_STATE',
               'TC_CURRENT_FLOW',
-              'TC_COMPRESSED_GAS_TEMP',
-              'TC_UPPER_SOURCE_PUMP_STATE')
+              'TC_EVD_EVAPORATION_PRESSURE',
+              'TC_EVD_CONDENSING_PRESSURE'
+              )
 
 
 def get_time_from_string_full_date(date):

@@ -14,12 +14,13 @@ def download():
         conn = psg.connect(**params)
         cur = conn.cursor()
         print('Download data...')
-        date_list = generate_date("07-01-2020", pd.datetime.now())
+        date_list = generate_date("2020-02-17", pd.datetime.now())
 
         for date in date_list:
             table = Table('public.pompy_ciepla')
             time = "time::date = '{}'".format(date.date())
             q = Query.from_(table).select('*')
+            print(q.get_sql(quote_char=None) + " WHERE " + time)
             cur.execute(q.get_sql(quote_char=None) + " WHERE " + time)
 
             number_of_row = cur.rowcount

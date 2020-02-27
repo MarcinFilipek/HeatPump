@@ -14,7 +14,7 @@ def download():
         conn = psg.connect(**params)
         cur = conn.cursor()
         print('Download data...')
-        date_list = generate_date("2020-02-17", pd.datetime.now())
+        date_list = generate_date("2020-02-26", pd.datetime.now())
 
         for date in date_list:
             table = Table('public.alarmy')

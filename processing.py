@@ -9,13 +9,13 @@ from emodul.values.universal_value import UniversalValue
 
 ROGGER = 10865
 id_module = 21834
-date = '2020-02-12'
+date = '2020-02-22'
 time_start = "00:00:00"
 time_end = "23:59:59"
 parameters = ('TC_COMPRESSOR_STATE',
-              'TC_CURRENT_FLOW',
-              'TC_EVD_EVAPORATION_PRESSURE',
-              'TC_EVD_CONDENSING_PRESSURE'
+              'TC_UPPER_SOURCE_IN_TEMP',
+              'TC_COMPRESSOR_LAST_WORK_TIME',
+              'TC_EVD_CONDENSING_TEMPERATURE'
               )
 
 
